@@ -61,10 +61,14 @@ Vehicle1 = Car('Octavia', 110000, 180)
 Vehicle2 = Bus('Volvo TR', 250000, 80)
 
 print(type(Vehicle1))
+print(isinstance(Vehicle1, Vehicle))
+print(isinstance(Vehicle1, Car))
 # Vehicle1.display_properties()
 print(Vehicle1)
 
 print(type(Vehicle2))
+print(isinstance(Vehicle2, Vehicle))
+print(isinstance(Vehicle2, Bus))
 # Vehicle2.display_properties()
 print(Vehicle2)
 
