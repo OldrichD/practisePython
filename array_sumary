@@ -1,0 +1,39 @@
+# sum of elements of an array exercise
+
+import random
+import string
+from typing import List, Union
+
+
+# generator of array with given length with random int, str and float items
+def random_array_generator(size: int, probability_str=0.1):
+    for item in range(size):
+        random_value = random.random()
+        if probability_str > random_value:
+            yield random.choice(string.ascii_lowercase)
+        elif random_value < 0.5:
+            yield random.randint(0, 99)
+        else:
+            yield round(random.uniform(0, 100), 1)
+
+
+# method for sum items in given array with control of their countability
+def sum_array(given_array: List[Union[int, float]]) -> Union[int, float, None]:
+    if not all(isinstance(item, (int, float)) for item in given_array):
+        return None
+    # return sum(given_array)
+    total_sum = 0
+    for item in given_array:
+        total_sum += item
+    return total_sum
+
+
+# place of usage
+array = list(random_array_generator(10))
+result = sum_array(array)
+
+if result is not None:
+    print(f'The sum of the {array} is: {result}')
+else:
+    print(f'It is not possible to make a mathematical sum of the given array {array}.')
+
