@@ -16,15 +16,15 @@ def random_array_generator(size: int):
 def maximal_item(given_array: List[int]) -> int or None:
     if not given_array:
         return print("The input array is empty.")
-    # return max(given_array)
-    current_maximum = given_array[0]
+    # maximum =  max(given_array)
+    maximum = given_array[0]
     for item in given_array:
-        if item > current_maximum:
-            current_maximum = item
-    return current_maximum
+        if item > maximum:
+            maximum = item
+    return maximum
 
 
 # place of usage
 array = list(random_array_generator(10))
 result = maximal_item(array)
-print(f'Maximum in array {array} is item: {result}.')
+print(f'Maximal element in array {array} is element: {result}.')
