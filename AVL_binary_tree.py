@@ -78,7 +78,7 @@ class AVLTree:
 
     def print_tree(self, root, level=0, prefix="Root: "):
         if root:
-            print(" " * (level * 4) + prefix + str(root.key))
+            print(" " * (level * 4) + prefix + str(root.key) + ", height:" + str(root.height))
             if root.left or root.right:
                 self.print_tree(root.left, level + 1, "L--- ")
                 self.print_tree(root.right, level + 1, "R--- ")
@@ -86,12 +86,11 @@ class AVLTree:
 
 # place of usage
 if __name__ == "__main__":
-
     avl_tree = AVLTree()
-    numbers_to_insert = [10, 5, 15, 3, 7, 12, 18, 1, 2, 3, 85, 12, 84, 83, 90, 4, 6, 7]
-
     root = None
-    for number in numbers_to_insert:
-        root = avl_tree.insert(root, number)
-
-    avl_tree.print_tree(root)
+    while True:
+        new_key = input("Insert new element (or '' to exit):")
+        if new_key == "":
+            break
+        root = avl_tree.insert(root, new_key)
+        avl_tree.print_tree(root)
