@@ -73,6 +73,7 @@ class AVLTree:
 
     def insert(self, key):
         self.root = self._insert(self.root, key)
+        return self.root
 
     def _insert(self, root, key):
         if not root:
@@ -89,8 +90,21 @@ class AVLTree:
 
         return self.balance_node(root)
 
+    def search(self, key):
+        return self._search(self.get_root(), key)
+
+    def _search(self, root, key):
+        if not root or root.key == key:
+            return root
+
+        if key < root.key:
+            return self._search(root.left, key)
+        elif key > root.key:
+            return self._search(root.right, key)
+
     def delete(self, key):
         self.root = self._delete(self.root, key)
+        return self.root
 
     def _delete(self, root, key):
         if not root:
@@ -133,19 +147,38 @@ class AVLTree:
 if __name__ == "__main__":
     avl_tree = AVLTree()
 
+    # loop for create AVL tree
     while True:
         try:
             new_key = int(input("Insert or delete element (type '0' to exit, and use '-' to delete element):"))
             if new_key == 0:
                 break
             elif new_key > 0:
-                root = avl_tree.insert(new_key)
+                avl_tree.insert(new_key)
             elif new_key < 0:
-                root = avl_tree.delete(abs(new_key))
+                avl_tree.delete(abs(new_key))
             else:
                 pass
 
             avl_tree.print_tree(avl_tree.get_root())
+
         except ValueError as ve:
-            print(f"Error: {ve}")
+            print(f'Error: {ve}')
             pass
+
+    # loop for finding elements in AVL tree
+    while True:
+        try:
+            find_key = int(input("Find element or type '0' to exit:"))
+            if find_key == 0:
+                break
+            else:
+                result_node = avl_tree.search(find_key)
+                if result_node:
+                    print(f'Element {find_key} was found like {result_node}')
+                else:
+                    print(f'Element {find_key} was not found in AVL tree.')
+        except ValueError as ve:
+            print(f'Error: {ve}')
+            pass
+
